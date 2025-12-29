@@ -328,7 +328,7 @@ foreach ($files as $file) {
         'type' => $details['type'],
         'size' => $isDir ? '-' : round(filesize($fullPath) / 1024, 2) . ' KB',
         'mtime' => date("Y-m-d H:i:s", filemtime($fullPath)),
-        'isPreviewable' => in_array($details['type'], ['image', 'video', 'audio', 'font', 'text', 'pdf', 'office'])
+        'isPreviewable' => true // content types are now all previewable (modal text or generic icon)
     ];
 }
 
@@ -1040,6 +1040,16 @@ if ($requestedPath) {
             } else if (type === 'office') {
                 const fullUrl = encodeURIComponent(window.location.origin + '/' + filename);
                 modalBody.innerHTML = `<div class="w-full text-center p-4"><p class="text-slate-400 mb-4 text-sm">Office preview requires public access.</p><iframe src="https://docs.google.com/gview?url=${fullUrl}&embedded=true" class="w-full h-[70vh] border-0 rounded-xl bg-white"></iframe></div>`;
+            } else {
+                // Default / Generic File Type
+                modalBody.innerHTML = `
+                    <div class="flex flex-col items-center justify-center w-full h-full p-12">
+                        <div class="w-32 h-32 bg-slate-700/50 rounded-3xl flex items-center justify-center mb-8">
+                            <i class="fa-solid fa-file text-6xl text-slate-400"></i>
+                        </div>
+                        <h3 class="text-xl text-white font-medium mb-2">${filename.split('/').pop()}</h3>
+                        <p class="text-slate-400 text-sm">Preview not available for this file type</p>
+                    </div>`;
             }
         }
 
