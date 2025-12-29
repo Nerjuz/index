@@ -596,6 +596,9 @@ if ($requestedPath) {
                     <button id="saveBtn" onclick="saveFile()" class="hidden bg-blue-600 hover:bg-blue-500 text-white px-4 md:px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all active:scale-95 flex items-center shadow-lg shadow-blue-900/40" title="Save">
                         <i class="fa-solid fa-floppy-disk md:mr-2"></i> <span class="hidden md:inline">Save</span>
                     </button>
+                    <a id="directLinkBtn" href="#" target="_blank" class="text-slate-400 hover:text-blue-400 text-xl p-2 transition-colors" title="Open in New Tab">
+                        <i class="fa-solid fa-external-link"></i>
+                    </a>
                     <a id="downloadBtn" href="#" download class="text-slate-400 hover:text-blue-400 text-xl p-2 transition-colors" title="Download File">
                         <i class="fa-solid fa-download"></i>
                     </a>
@@ -642,6 +645,7 @@ if ($requestedPath) {
         const modalBody = document.getElementById('modalBody');
         const modalTitle = document.getElementById('modalTitle');
         const modalSubtitle = document.getElementById('modalSubtitle');
+        const directLinkBtn = document.getElementById('directLinkBtn');
         const downloadBtn = document.getElementById('downloadBtn');
         const editBtn = document.getElementById('editBtn');
         const renameBtn = document.getElementById('renameBtn');
@@ -811,6 +815,8 @@ if ($requestedPath) {
                 e.preventDefault();
                 handleDownload('?' + urlParams.toString(), filename.split('/').pop());
             };
+            
+            directLinkBtn.href = encodeURI(filename);
             
             // Reset modal body state
             modalBody.classList.add('flex', 'items-center', 'justify-center');

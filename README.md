@@ -66,5 +66,11 @@ $config = [
 -   PHP 7.4 or higher.
 -   Extensions: `json`, `mbstring` (standard in most installations).
 
-## 📄 License
+## � Changelog
+-   **New**: Added direct URL button to file preview modal for easy sharing/viewing in new tab.
+-   **Update**: Added `allow_edit` configuration option to enable/disable file editing.
+-   **Fix**: Improved file download handling with correct filenames using UTF-8 encoding.
+-   **UI**: Enhanced mobile experience for modal buttons and icons.
+
+## �📄 License
 MIT License. Feel free to modify and adapt for your own use.
