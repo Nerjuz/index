@@ -2,6 +2,8 @@
 
 A modern, lightweight, and powerful file management solution contained within a single PHP file. Drop it on your server and start managing files immediately.
 
+**[🔴 Live Demo](https://ite.lt/index/)** (Password: `password`)
+
 ## 🚀 Features
 
 ### Core Functionality
