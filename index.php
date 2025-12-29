@@ -11,9 +11,10 @@ if (extension_loaded('zlib') && !ini_get('zlib.output_compression')) {
 // --- CONFIGURATION START ---
 $config = [
     'title' => 'Files Explorer',
-    'password' => '', // Leave empty to disable password protection
+    'password' => 'password', // Leave empty to disable password protection
     'allow_upload' => true,
     'allow_create' => true,
+    'allow_edit' => true,
     'allow_rename' => true,
     'allow_delete' => true,
     'exclude_files' => ['index.php', 'Dockerfile', 'docker-compose.yml', 'Makefile', '.git', '.DS_Store'],
@@ -144,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         exit;
     }
 
-    if ($action === 'save_file' && $fileName) {
+    if ($action === 'save_file' && $config['allow_edit'] && $fileName) {
         $content = $_POST['content'] ?? '';
         $filePath = $currentDir . '/' . $fileName;
         if (file_put_contents($filePath, $content) !== false) {
@@ -549,7 +550,7 @@ if ($requestedPath) {
                     <div class="mb-4 text-slate-700">
                         <i class="fa-solid fa-folder-open text-8xl"></i>
                     </div>
-                    <p class="text-slate-500 text-lg font-medium italic">This gallery is empty</p>
+                    <p class="text-slate-500 text-lg font-medium italic">This folder is empty</p>
                 </div>
             <?php endif; ?>
 
@@ -818,7 +819,7 @@ if ($requestedPath) {
             modalBody.scrollLeft = 0;
             
             // Toggle buttons
-            editBtn.classList.toggle('hidden', type !== 'text');
+            editBtn.classList.toggle('hidden', type !== 'text' || !config.allow_edit);
             renameBtn.classList.toggle('hidden', !config.allow_rename);
             deleteBtn.classList.toggle('hidden', !config.allow_delete);
             cancelBtn.classList.add('hidden');

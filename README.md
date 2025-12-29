@@ -3,6 +3,7 @@
 A modern, lightweight, and powerful file management solution contained within a single PHP file. Drop it on your server and start managing files immediately.
 
 **[🔴 Live Demo](https://ite.lt/index/)** (Password: `password`)
+> **Note:** For security reasons, Create, Edit, Upload, and Delete actions are disabled in the live demo.
 
 ## 🚀 Features
 
@@ -57,7 +58,7 @@ $config = [
 
 ### Options
 -   **`password`**: Leave empty to disable authentication. Set a string to require a login.
--   **`allow_*`**: Toggle specific features on or off (`true`/`false`).
+-   **`allow_*`**: Toggle specific features on or off (`true`/`false`). Options: `allow_upload`, `allow_create`, `allow_edit`, `allow_rename`, `allow_delete`.
 -   **`exclude_files`**: Array of filenames to hide from the list.
 -   **`exclude_extensions`**: Array of file extensions to hide.
 
